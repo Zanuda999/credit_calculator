@@ -1,0 +1,62 @@
+<html>
+  <body>
+    <script language="JavaScript" type="text/javascript">
+      function sendcalc(){
+        if(!document.form.percent.value || !document.form.credit.value || !document.form.term.value){
+          alert(' Ви ввели не всі дані!');
+          return false;
+        }
+      }
+    </script>
+    <% if form.failed? %>
+      <% if form.failed_on?(:percent) %>
+          <p><font color="red">Процентна ставка не корректна</font></p>
+      <% end %>
+      <% if form.failed_on?(:sum) %>
+          <p><font color="red">Сумма кредиту не валідна</font></p>
+      <% end %>
+      <% if form.failed_on?(:period) %>
+          <p><font color="red">Період не валідний</font></p>
+      <% end %>
+      <% if form.failed_on?(:type) %>
+          <p><font color="red">Метод погашення не вірний</font></p>
+      <% end %>
+    <% end %>
+    <form action="/" method="get" onSubmit="return sendcalc()" name="form">
+      <table class="form" width="100%" cellpadding="5" cellspacing="0">
+        <tr>
+          <td width="35%"><b>Кредитні відомості:</b></td>
+          <td width="65%"> </td>
+        </tr>
+        <tr>
+          <td><label for="percent">Процентна ставка (%):</label></td>
+          <td><input type="text" name="percent" id="percent" value="" style="" size="3"><br><p><font color="red">Увага: Дані вводяться через крапку!</font></p></td>
+        </tr>
+        <tr>
+          <td><label for="sum">Сума кредиту:</label></td>
+          <td><input type="text" name="sum" id="sum" value="" style="" size="10"></td>
+        </tr>
+        <tr>
+          <td><label>Метод погашення кредиту:</label></td>
+          <td>
+            <input type="radio" name="type" id="typeUsual" value="Usual" checked>
+            <label for="typeUsual">Стандартний</label><br>
+            <input type="radio" name="type" id="typeEqual" value="Equal">
+            <label for="typeEqual">Ануїтетний (рівними частинами)</label>
+          </td>
+        </tr>
+        <tr>
+          <td><label for="period">Термін кредиту (в місяцях):</label></td>
+          <td><input type="text" name="period" id="period" value="" style="" size="5"><br></td>
+        </tr>
+        <tr>
+          <td><b>Графік платежів:</b></td>
+          <td>
+            <input type="submit" value="Побудувати" id="doGraph">
+            <br><br>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+<body>
+<p>Процентна ставка: <%= percent %>%<br/>
+  Сума кредиту: <%= credit_sum %>
+  <Currency></Currency>
+</p>
+<table cellpadding="0" cellspacing="0" border="0" width="100%">
+  <tr type="header-main">
+    <th type="header-main-base">номер місяця</th>
+    <th type="header-main-base">погашення кредиту</th>
+    <th type="header-main-base">погашення %</th>
+    <th type="header-main-base">загальний внесок</th>
+    <th type="header-main-base">залишок кредиту</th>
+  </tr>
+  <% (0..period-1).each_with_index do |index| %>
+      <tr>
+        <td align="middle"><%= index+1 %></td>
+        <td align="middle"><%= credit_repayment[index] %></td>
+        <td align="middle"><%= percent_repayment[index] %></td>
+        <td align="middle"><%= total_repayment[index] %></td>
+        <td align="middle"><%= credit_balance[index] %></td>
+      </tr>
+  <% end %>
+  <tr>
+    <td align="middle"></td>
+    <td align="middle"><b><%= credit_sum %></b></td>
+    <td align="middle"><b><%= total_percent %></b></td>
+    <td align="middle"><b><%= total_sum %></b></td>
+    <td align="middle"></td>
+  </tr>
+</table>
+
+</body>
+</html>
